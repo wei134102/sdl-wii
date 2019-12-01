@@ -28,6 +28,7 @@
 #include <stdarg.h>
 
 /* Types */
+#if 0
 typedef signed char int8_t;
 typedef unsigned char uint8_t;
 typedef signed short int16_t;
@@ -38,6 +39,7 @@ typedef signed long long int64_t;
 typedef unsigned long long uint64_t;
 typedef unsigned int size_t;
 typedef unsigned int uintptr_t;
+#endif
 
 /* Architecture */
 #define SDL_BYTEORDER		SDL_BIG_ENDIAN
