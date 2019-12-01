@@ -1,0 +1,15 @@
+[![Actions Status](https://github.com/raz0red/sdl-wii/workflows/Build/badge.svg)](https://github.com/raz0red/sdl-wii/actions)
+
+Port of SDL for the Nintendo Wii
+http://code.google.com/p/sdl-wii/
+
+This port uses the devKitPro toolchain, available from:
+http://www.devkitpro.org
+
+## Credits
+
+* Original GameCube port ~ www.devkitpro.org
+* Ported to Wii	Mindcry ~ (http://mindcry.cpl.de/wii/)
+* Many fixes (threading, audio, etc) ~ Yohanes Nugroho (http://tinyhack.com)
+* Renamed to Wii, update to SDL SVN ~ David Hudson (http://cs-sdl.sourceforge.net)
+* Audio + Video (using GX) systems rewrite ~ Tantric
