@@ -1,6 +1,10 @@
 name: Build
 
-on: [push]
+on:
+  workflow_dispatch:  # 允许手动触发
+  # 移除定时任务，如果不需要的话
+  # schedule:
+  #   - cron: "0 0 * * *"
 
 jobs:
   build:
@@ -8,10 +12,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - run: docker run raz0red/devkitppc /opt/devkitpro/pacman/bin/pacman -Q 
-    - run: docker run -v $(pwd):/source raz0red/devkitppc /source/dist.sh
-    - uses: actions/upload-artifact@v1
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Update package list
+      run: docker run raz0red/devkitppc /opt/devkitpro/pacman/bin/pacman -Q
+
+    - name: Verify dist.sh existence and permissions
+      run: |
+        if [ ! -f dist.sh ]; then
+          echo "Error: dist.sh not found!"
+          exit 1
+        fi
+        if [ ! -x dist.sh ]; then
+          chmod +x dist.sh
+        fi
+
+    - name: Run dist.sh
+      run: docker run -v $(pwd):/source raz0red/devkitppc /bin/bash -c "/source/dist.sh"
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
       with:
         name: dist
         path: dist
